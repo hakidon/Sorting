@@ -55,7 +55,6 @@ class Sort {
         size++;
 
         String [] iter = new String[size];
-        // System.out.println(iter.length);
         int idx = intval;
         for (int i = 0; i < iter.length; i++) {
             if (idx > words.length)
