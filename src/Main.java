@@ -125,9 +125,15 @@ class Sort {
         // inserting data into 2d arraylist
         for(int i=0; i<word.size(); i++){
             outEpoch+=8;    // for loop, assign position, call get(), call charAt(), call get(), call length(), arithmetic
-            int position = (int) word.get(i).charAt(word.get(i).length()-1);
-            // System.out.println(position);
-            dataset[0][position].add(word.get(i));
+
+            if(word.get(i).length()<maxWordSize){
+                dataset[0][0].add(word.get(i));
+            }
+            else{
+                int position = (int) word.get(i).charAt(word.get(i).length()-1);
+                // System.out.println(position);
+                dataset[0][position].add(word.get(i));
+            }
             outEpoch+=2;    //call add(), call get()
         }
         
