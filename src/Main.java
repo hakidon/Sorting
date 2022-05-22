@@ -45,6 +45,11 @@ class Sort {
         System.out.println();
         System.out.println(caseName + ": ");
 
+        if (sortName == "Quick" || sortName == "quick") {
+            words = sliceArray(words, 0, 10000);
+            intval = 1000;
+        }
+
         int size = words.length / intval;
         if (words.length % intval != 0)
         size++;
@@ -107,7 +112,6 @@ class Sort {
             //searching for the maximum word length
             if (arr[x].length() > maxWordSize){
                 maxWordSize = arr[x].length();
-                // System.out.println(temp +" " + temp.charAt(maxWordSize-2));
             }
 
         }
@@ -119,19 +123,15 @@ class Sort {
             }
         }
         
-        // System.out.println("inserting data to 2d arraylist");
 
         long outEpoch = 1;  // premitive counter
         // inserting data into 2d arraylist
         for(int i=0; i<word.size(); i++){
             outEpoch+=8;    // for loop, assign position, call get(), call charAt(), call get(), call length(), arithmetic
             int position = (int) word.get(i).charAt(word.get(i).length()-1);
-            // System.out.println(position);
             dataset[0][position].add(word.get(i));
             outEpoch+=2;    //call add(), call get()
         }
-        
-        // System.out.println("sorting...");
 
         outEpoch+=3;   // assign currentPosition, arithmetic, for loop
         int currentPosition = maxWordSize-1;
@@ -140,7 +140,6 @@ class Sort {
             currentPosition--;
             outEpoch+=4;    // for loop, call function, decrement 
         }
-        // epoch = rSort.sort(arr);
         return outEpoch;
     }
 
@@ -161,29 +160,6 @@ class Sort {
     }
 }
 
-// public class Main {
-//         public static void main(String[] args) {
-//             ReadFile readFile = new ReadFile();
-
-
-//             //Prepare graph data
-//         String[] caseName = {"Best", "Average", "Worst"};
-//         String[][] words = new String [caseName.length][];
-
-//         for (int i = 0; i < caseName.length; i++) {
-//             words[i] = readFile.readArray(caseName[i] + "List.txt");
-//         }
-
-//         QuickSort qSort = new QuickSort();
-
-//         long test = qSort.sort(words[1]);
-
-//         for (String strings : words[1]) {
-//             System.out.println(strings);
-//         }
-//         }
-
-// }
 public class Main extends Sort{
     public static void main(String[] args) {
 
@@ -219,10 +195,8 @@ public class Main extends Sort{
         Instant end = Instant.now();
         long timeElapsed = Duration.between(start, end).toSeconds();
         System.out.println("----------------------------------------------");
-        //System.out.println("Average: ");
         System.out.println("(" + sortObj.getName() + " sort) Time taken: " + (timeElapsed / 60) + " minutes, " + (timeElapsed % 60) + " seconds");
-        //System.out.println("Number of iteration: " + aveIter);
-
+       
         //Write into file 
         sortObj.setFile(sortObj.getName() + "Sort.txt");
 
