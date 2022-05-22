@@ -3,39 +3,44 @@ package BubbleSort;
 public class BubbleSort
 {
     public long sort(String[] arr)
-    {
-        
+    {   
+        int i, j;
         String temp;
-        int n = arr.length;
- 
-        long epoch = 1; //Assignment of array length to n
-        // Sorting strings using bubble sort
-        epoch++; // assignment for j
-        for (int j = 0; j < n - 1; j++)
+        long counter = 0;  // primitive operation counter
+        boolean swapped;
+
+        counter += 5;
+        for (i = 0; i < arr.length - 1; i++)
         {
-            epoch += 2; //Comparison and arithmetric 
-            epoch += 2; //Increament j 
+            counter++;
+            swapped = false;
 
-            epoch += 2; //Assignment i and arithmetric
-            for (int i = j + 1; i < n; i++)
+            counter += 7;
+            for (j = 0; j < arr.length - i - 1; j++)
             {
-                epoch++; //Comparison
-                epoch+=2; //Increament i
-
-                epoch+= 2; //Function call and comparison
-                if (arr[j].compareTo(arr[i]) > 0)
+                counter += 3;
+                if (arr[j].compareTo(arr[i]) < 0)
                 {
+                    // swap arr[j] and arr[j+1]
                     temp = arr[j];
                     arr[j] = arr[i];
                     arr[i] = temp;
-
-                    epoch+=3; //Assignment
+                    swapped = true;
+                    counter += 5;
                 }
             }
-            
-        }
-        epoch++; //Function return
-        return  epoch;
-    }
  
+            // IF no two elements were
+            // swapped by inner loop, then break
+            counter ++;
+            if (swapped == false)
+                break;
+        }
+
+        // ArrayList<String> wordList = convertToArrayList(wordArray); // convert back to arraylist before passing to writeToFile
+        // writeToFile(wordList);
+        // System.out.println("Process completed. Array sorted!");
+        counter ++;
+        return counter;
+    } 
 }
