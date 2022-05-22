@@ -206,7 +206,7 @@ public class Main extends Sort{
         
         //To change sorting type 
         //Set sorting name accordingly
-        sortObj.setName("Radix"); //Insert sorting type here
+        sortObj.setName("Insertion"); //Insert sorting type here
         int intval = 10000;
         String[] input = readFile.readCount(words[0], intval);
         String result[][] = new String[caseName.length][];
