@@ -3,72 +3,58 @@ package QuickSort;
 // Java implementation of QuickSort 
 public class QuickSort{
  
-    // private String names[];
-    // private int length;
- 
-    private long epoch;
+    private  long epoch;
 
-    public long sort(String array[]) {
-        if (array == null || array.length == 0) {
-            return 0;
+    public  int partition(String arr[], int low_idx, int high_idx){
+        epoch++; // assignments
+        String pivot = arr[high_idx];
+        int i = low_idx - 1;
+
+        for(int j = low_idx; j < high_idx; j++){
+            epoch += 2; // for loop assignment and comparison
+
+            epoch++; // if comparison
+            if(arr[j].compareTo(pivot) < 0){
+                epoch++; // increment
+                i++;
+
+                epoch += 3; // swap
+                //swap
+                String temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+            epoch++; // for loop increment j
         }
-        epoch ++;
-        epoch ++;
-        int n = array.length;
-        quickSort(0, n - 1, array);
+        
+        epoch++; // i increment
+        i++;
+
+        epoch += 3; // swap
+        String temp = arr[i];
+        arr[i] = pivot;
+        arr[high_idx] = temp;
+
+        epoch++; // return
+        return i;//pivot index
+    }
+
+    public  void quickSort(String arr[], int low, int high) {
+
+        epoch++; // comparison
+        if(low < high){
+            epoch++; // assignment
+            int partition_idx = partition(arr, low, high);
+
+            quickSort(arr, low, partition_idx-1);
+            quickSort(arr, partition_idx+1, high);
+        }
+    }
+
+    public  long sort (String arr[]) {
+        epoch = 0;
+        quickSort(arr, 0, arr.length - 1);
         return epoch;
     }
- 
- 
-    private void quickSort(int lowerIndex, int higherIndex, String[] arr) {
-        int i = lowerIndex;
-        int j = higherIndex;
-        epoch += 2;
 
-        String pivot = arr[lowerIndex + (higherIndex - lowerIndex) / 2];
-        epoch += 4;
-
-        epoch ++;
-        while (i <= j) {
-            epoch += 2;
-            while (arr[i].compareTo(pivot) < 0) {
-                epoch += 2;
-                i++;
-            }
- 
-            epoch += 2;
-            while (arr[j].compareTo(pivot) > 0) {
-                epoch += 2;
-                j--;
-            }
- 
-            epoch ++;
-            if (i <= j) {
-                epoch ++;
-                swap(i, j, arr);
-                i++;
-                j--;
-                epoch += 4;
-            }  
-        }
- 
-        //call quickSort recursively
-        epoch ++;
-        if (lowerIndex < j) {
-            epoch ++;
-           quickSort(lowerIndex, j, arr);
-        }
-        epoch ++;
-        if (i < higherIndex) {
-            epoch ++;
-            quickSort(i, higherIndex, arr);
-        }
-     }
- 
-    private void swap(int i, int j, String[] arr) {
-        String temp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = temp;
-        epoch += 3;
-    }
 }
